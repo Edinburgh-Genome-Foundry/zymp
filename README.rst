@@ -21,9 +21,9 @@ Because now you  can!
 
 **How good is it ?**
 
-It is coded with a "whatever works well enough" philosophy. It uses a greedy
-algorithm with many simplifications so don't expect perfect solutions,
-but it works well enough for us at the moment.
+It is coded with a "whatever works well enough" philosophy. It has a lot of
+"whatever" but it generally works "well enough". The algorithm is greedy with
+many simplifications so don't expect perfect solutions.
 
 Examples
 --------
