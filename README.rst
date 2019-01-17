@@ -49,7 +49,7 @@ Here is how you design a sequence
     forbidden_enzymes=['BsmBI', 'BsaI']
 
     # DESIGN AN OPTIMIZED SEQUENCE WITH ZYMP
-    seq, sites_in_seq, leftover, success = stacked_sites_array(
+    seq, sites_in_seq, leftover = stacked_sites_array(
             enzymes_names, forbidden_enzymes=forbidden_enzymes,
             unique_sites=True, tries=100)
 
@@ -98,7 +98,7 @@ for the result:
     def success_condition(seq, sites_in_seq, leftover):
         return {'NcoI', 'HpaI'}.issubset(sites_in_seq)
 
-    seq, sites_in_seq, leftover, success = stacked_sites_array(
+    seq, sites_in_seq, leftover = stacked_sites_array(
             enzymes_names, forbidden_enzymes=forbidden_enzymes,
             tries=100, success_condition=success_condition)
 

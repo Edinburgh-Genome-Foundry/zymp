@@ -56,6 +56,9 @@ def enzymes_names_to_distances_graph(enzymes_names):
             graph[(e1, e2)] = dict(diff=diff, dist=len(diff))
     return graph, enzymes_sites, core_enzymes
 
+class NoSuitableSequenceFound(Exception):
+    pass
+
 def stacked_sites_array(enzymes_names, forbidden_enzymes=(), unique_sites=True,
                         tries=10, logger='bar', success_condition=None):
 
@@ -134,12 +137,13 @@ def stacked_sites_array(enzymes_names, forbidden_enzymes=(), unique_sites=True,
         return (len(leftover), len(seq))
         
     current_best = seq, in_seq, leftover = one_try()
-    current_score = score(seq, leftover, in_seq)
+    current_score = score(seq, in_seq, leftover)
     for _ in logger.iter_bar(tries=range(tries)):
         new_result = seq, in_seq, leftover = one_try()
-        new_score = score(seq, leftover, in_seq)
+        new_score = score(seq, in_seq, leftover)
         if new_score < current_score:
             current_score = new_score
             current_best = new_result
-    success = current_score < failure_score
-    return (*current_best, success)
+    if current_score == failure_score:
+        raise NoSuitableSequenceFound("Could not find a suitable sequence.")
+    return current_best

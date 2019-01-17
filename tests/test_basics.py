@@ -20,7 +20,7 @@ forbidden_enzymes=['BsmBI', 'BsaI']
 
 def test_basic_example(tmpdir):
 
-    seq, sites_in_seq, leftover, success = stacked_sites_array(
+    seq, sites_in_seq, leftover = stacked_sites_array(
             enzymes_names, forbidden_enzymes=forbidden_enzymes, tries=200)
     assert len(seq) < 170
     assert len(sites_in_seq) > 43
@@ -34,13 +34,13 @@ def test_basic_example(tmpdir):
     write_record(record, os.path.join(str(tmpdir), 'test.gb'))
 
 def test_basic_example_with_condition(tmpdir):
-    wanted_enzymes =  {'NcoI', 'NdeI', 'SacI'}
+    wanted_enzymes = {'XmaI', 'BlnI'}
     def success_condition(seq, sites_in_seq, leftover):
         return wanted_enzymes.issubset(sites_in_seq)
 
-    seq, sites_in_seq, leftover, success = stacked_sites_array(
-            enzymes_names, forbidden_enzymes=forbidden_enzymes,
-            tries=300, success_condition=success_condition)
+    seq, sites_in_seq, leftover = stacked_sites_array(
+        enzymes_names, forbidden_enzymes=forbidden_enzymes,
+        tries=500, success_condition=success_condition)
 
     assert wanted_enzymes.issubset(sites_in_seq)
     assert len(seq) < 170
