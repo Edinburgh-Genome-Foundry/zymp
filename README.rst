@@ -79,6 +79,7 @@ Here is how you design a sequence
 **Console output:**
 
 .. code:: bash
+
     Sequence length: 159
     Restriction sites: 49
     Sites not included:  {'NcoI', 'HpaI', 'SacII'}
