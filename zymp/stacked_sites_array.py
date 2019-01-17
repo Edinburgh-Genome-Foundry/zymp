@@ -68,20 +68,20 @@ def stacked_sites_array(enzymes_names, forbidden_enzymes=(), unique_sites=True,
                                       list(forbidden_enzymes))
     graph, enzymes_sites, core_enzymes = \
         enzymes_names_to_distances_graph(enzymes_names)
-
     def one_try():
         pickable_enzymes_not_in_seq = set(enzymes_names)
         enzymes_not_in_seq = set(enzymes_names)
         enzymes_in_seq = set()
         
-        def add_enzyme(e):
+        def add_enzyme(e, as_core=True):
             if e not in enzymes_in_seq:
                 if e in pickable_enzymes_not_in_seq:
                     pickable_enzymes_not_in_seq.remove(e)
                 enzymes_not_in_seq.remove(e)
                 enzymes_in_seq.add(e)
-                for enz in core_enzymes.get(e, []):
-                    add_enzyme(enz)
+                if as_core:
+                    for enz in core_enzymes.get(e, []):
+                        add_enzyme(enz, as_core=False)
         
         l = list(pickable_enzymes_not_in_seq)
         path = [l[np.random.randint(len(l))]]
