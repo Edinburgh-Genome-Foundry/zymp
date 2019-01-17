@@ -1,0 +1,158 @@
+LOCUS       .                        159 bp    DNA              UNK 01-JAN-1980
+DEFINITION  ..
+ACCESSION   <unknown id>
+VERSION     <unknown id>
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    55..60
+                     /label="AccI"
+                     /color="#ccccff"
+     misc_feature    74..79
+                     /label="AclI"
+                     /color="#ccccff"
+     misc_feature    63..68
+                     /label="AflII"
+                     /color="#ccccff"
+     misc_feature    84..89
+                     /label="AflIII"
+                     /color="#ccccff"
+     misc_feature    131..136
+                     /label="AgeI"
+                     /color="#ccccff"
+     misc_feature    88..93
+                     /label="ApaLI"
+                     /color="#ccccff"
+     misc_feature    122..127
+                     /label="AseI"
+                     /color="#ccccff"
+     misc_feature    32..37
+                     /label="AvaI"
+                     /color="#ccccff"
+     misc_feature    116..121
+                     /label="BamHI"
+                     /color="#ccccff"
+     misc_feature    35..40
+                     /label="BanII"
+                     /color="#ccccff"
+     misc_feature    25..30
+                     /label="BlnI"
+                     /color="#ccccff"
+     misc_feature    17..22
+                     /label="BmtI"
+                     /color="#ccccff"
+     misc_feature    98..103
+                     /label="BsmI"
+                     /color="#ccccff"
+     misc_feature    102..107
+                     /label="BssHII"
+                     /color="#ccccff"
+     misc_feature    5..9
+                     /label="DdeI"
+                     /color="#ccccff"
+     misc_feature    70..75
+                     /label="DraI"
+                     /color="#ccccff"
+     misc_feature    14..19
+                     /label="Eco47III"
+                     /color="#ccccff"
+     misc_feature    146..151
+                     /label="EcoRI"
+                     /color="#ccccff"
+     misc_feature    140..145
+                     /label="EcoRV"
+                     /color="#ccccff"
+     misc_feature    55..60
+                     /label="HindII"
+                     /color="#ccccff"
+     misc_feature    66..71
+                     /label="HindIII"
+                     /color="#ccccff"
+     misc_feature    30..34
+                     /label="HinfI"
+                     /color="#ccccff"
+     misc_feature    134..139
+                     /label="KpnI"
+                     /color="#ccccff"
+     misc_feature    40..45
+                     /label="MfeI"
+                     /color="#ccccff"
+     misc_feature    84..89
+                     /label="MluI"
+                     /color="#ccccff"
+     misc_feature    7..12
+                     /label="MspA1I"
+                     /color="#ccccff"
+     misc_feature    40..45
+                     /label="MunI"
+                     /color="#ccccff"
+     misc_feature    106..111
+                     /label="NaeI"
+                     /color="#ccccff"
+     misc_feature    50..55
+                     /label="NdeI"
+                     /color="#ccccff"
+     misc_feature    17..22
+                     /label="NheI"
+                     /color="#ccccff"
+     misc_feature    152..159
+                     /label="NotI"
+                     /color="#ccccff"
+     misc_feature    47..52
+                     /label="NsiI"
+                     /color="#ccccff"
+     misc_feature    45..50
+                     /label="NspI"
+                     /color="#ccccff"
+     misc_feature    10..15
+                     /label="PstI"
+                     /color="#ccccff"
+     misc_feature    111..116
+                     /label="PvuI"
+                     /color="#ccccff"
+     misc_feature    7..12
+                     /label="PvuII"
+                     /color="#ccccff"
+     misc_feature    35..40
+                     /label="SacI"
+                     /color="#ccccff"
+     misc_feature    55..60
+                     /label="SalI"
+                     /color="#ccccff"
+     misc_feature    1..6
+                     /label="ScaI"
+                     /color="#ccccff"
+     misc_feature    21..25
+                     /label="SfaNI"
+                     /color="#ccccff"
+     misc_feature    79..84
+                     /label="SnaBI"
+                     /color="#ccccff"
+     misc_feature    92..97
+                     /label="SpeI"
+                     /color="#ccccff"
+     misc_feature    45..50
+                     /label="SphI"
+                     /color="#ccccff"
+     misc_feature    125..130
+                     /label="SspI"
+                     /color="#ccccff"
+     misc_feature    25..30
+                     /label="StyI"
+                     /color="#ccccff"
+     misc_feature    122..127
+                     /label="VspI"
+                     /color="#ccccff"
+     misc_feature    32..37
+                     /label="XhoI"
+                     /color="#ccccff"
+     misc_feature    58..63
+                     /label="ZraI"
+                     /color="#ccccff"
+ORIGIN
+        1 agtactcagc tgcagcgcta gcatcctagg actcgagctc aattgcatgc atatgtcgac
+       61 gtcttaagct ttaaacgtta cgtacgcgtg cactagtgaa tgcgcgccgg cgatcggatc
+      121 cattaatatt accggtaccg atatcgaatt cgcggccgc
+//
