@@ -84,11 +84,11 @@ Here is how you design a sequence
     Restriction sites: 49
     Sites not included:  {'NcoI', 'HpaI', 'SacII'}
 
-Zymp has created a 152-nucleotide sequence with 48 of the 52 restriction sites
+Zymp has created a 159-nucleotide sequence with 49 of the 52 restriction sites
 we specified, that's only ~3 nucleotides per site ! and the sequence is free
 of BsaI or HpaI sites, so it is compatible with Golden Gate assembly.
 
-If NcoI and BlnI are your favorite enzymes, you may be disappointed that they
+If NcoI and HpaI are your favorite enzymes, you may be disappointed that they
 are not in the final sequence. Zymp allows you to add validity conditions
 for the result:
 
