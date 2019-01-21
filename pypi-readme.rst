@@ -4,6 +4,13 @@ Zymp
 Zymp is a Python library to design "restriction site arrays", which are
 compact sequences with many restriction sites.
 
+For instance here is a 159-nucleotide sequence made with Zymp, with 49 enzyme
+recognition sites (out of 52 provided). That's a frequency of around
+3 nucleotides per site:
+
+.. image:: https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/zymp/master/docs/_static/images/example_array.png
+   :width: 800
+
 Infos
 -----
 

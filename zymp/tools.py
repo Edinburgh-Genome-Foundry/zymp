@@ -116,15 +116,3 @@ def write_record(record, target, fmt='genbank'):
     if hasattr(target, 'open'):
         target = target.open('w')
     SeqIO.write(record, target, fmt)
-
-class TooManyAttemptsExpection(Exception):
-    pass
-
-def attempt_n_times_and_fail(method, n_attempts, success_condition,
-                             logger=None, message="Too many attempts."):
-    logger = proglog.default_bar_logger(logger, min_time_interval=0.2)
-    for _ in logger.iter_bar(range(n_attempts)):
-        result = method()
-        if success_condition(result):
-            return result
-    raise TooManyAttemptsExpection(message)

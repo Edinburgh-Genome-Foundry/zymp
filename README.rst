@@ -1,5 +1,9 @@
-Zymp
-====
+.. raw:: html
+
+    <p align="center">
+    <img alt="stacked array" title="stacked array" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/zymp/master/docs/_static/images/title.png" width="500">
+    <br />
+    </p>
 
 .. image:: https://travis-ci.org/Edinburgh-Genome-Foundry/zymp.svg?branch=master
    :target: https://travis-ci.org/Edinburgh-Genome-Foundry/zymp
@@ -9,21 +13,15 @@ Zymp
    :target: https://coveralls.io/github/Edinburgh-Genome-Foundry/zymp?branch=master
 
 
-Zymp is a Python utility to produce small sequences of DNA packed with enzyme
+Zymp is a Python library to produce small sequences of DNA packed with enzyme
 restriction sites. You specify the enzymes you want, the ones you don't want,
 whether you want the sites to be unique, or any other condition, and Zymp will
 attempt to find a compact sequence verifying all of this (it really focuses on
 sequence shortness).
 
-**Wait, why?**
-
-Because now you  can!
-
-**How good is it ?**
-
-It is coded with a "whatever works well enough" philosophy. It has a lot of
-"whatever" but it generally works "well enough". The algorithm is greedy with
-many simplifications so don't expect perfect solutions.
+**Warning:** Zymp is implemented with a "whatever works well enough"
+philosophy. It has a lot of "whatever" but it generally works "well enough".
+The algorithm is greedy with many simplifications so don't expect perfect solutions.
 
 Examples
 --------
@@ -83,7 +81,7 @@ Here is how you design a sequence
     Restriction sites: 49
     Sites not included:  {'NcoI', 'HpaI', 'SacII'}
 
-Zymp has created a 152-nucleotide sequence with 48 of the 52 restriction sites
+Zymp has created a 159-nucleotide sequence with 49 of the 52 restriction sites
 we specified, that's only ~3 nucleotides per site ! and the sequence is free
 of BsaI or HpaI sites, so it is compatible with Golden Gate assembly.
 
