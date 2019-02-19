@@ -1,7 +1,7 @@
 .. raw:: html
 
     <p align="center">
-    <img alt="stacked array" title="stacked array" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/zymp/master/docs/_static/images/title.png" width="500">
+    <img alt="stacked array" title="stacked array" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/zymp/master/docs/_static/images/title.png" width="300">
     <br />
     </p>
 
@@ -11,7 +11,6 @@
 
 .. image:: https://coveralls.io/repos/github/Edinburgh-Genome-Foundry/zymp/badge.svg?branch=master
    :target: https://coveralls.io/github/Edinburgh-Genome-Foundry/zymp?branch=master
-
 
 Zymp is a Python library to produce small sequences of DNA packed with enzyme
 restriction sites. You specify the enzymes you want, the ones you don't want,
