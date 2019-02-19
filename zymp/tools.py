@@ -67,6 +67,7 @@ def sequence_to_biopython_record(sequence, id='<unknown id>',
                      id=id, name=name, features=list(features))
 
 def enzymes_to_dna_pattern(enzymes_names):
+    """Return a dictionnary {enzyme_name: DnaNotationPattern()}"""
     return {
         e: DnaNotationPattern(Restriction.__dict__[e].site,
                               in_both_strands='auto')
@@ -74,10 +75,30 @@ def enzymes_to_dna_pattern(enzymes_names):
     }
 
 def get_enzymes_ATGC_sequences(enzymes_names):
+    """Return an ATGC string of the enzyme's recognition site.
+
+    If an enzyme has an ambiguous recognition site (with Ys, Ks, etc.) a valid
+    ATGC instance of this representation is returned.  
+    """
     patterns = enzymes_to_dna_pattern(enzymes_names)
     return {e: p.all_variants()[0] for e, p in patterns.items()}
 
 def find_patterns_matches(seq, patterns=None, enzymes_names=None):
+    """Return a dictionnary {pattern_name: [sites matches locations]}
+    
+    Parameters
+    ----------
+
+    seq
+      An ATGC string.
+
+    patterns
+      A dict of the form {pattern_name: dnachisel.DnaNotationPattern()}.
+      A list of enzyme names can be provided instead.
+    
+    enzymes_names
+      A list of enzymes names whose sites will be matched in the sequence.
+    """
     if enzymes_names is not None:
         patterns = enzymes_to_dna_pattern(enzymes_names)
     return {
@@ -88,6 +109,31 @@ def find_patterns_matches(seq, patterns=None, enzymes_names=None):
 def annotate_enzymes_sites(sequence, enzymes_names, forbidden_enzymes=(),
                            unique_sites=True, valid_color='#ccccff',
                            invalid_color='#ffcccc'):
+    """Create a record with annotations for cut sites, invalid sites in red.
+
+    Parameters
+    ----------
+    
+    sequence
+      An ATGC sequence
+    
+    enzymes_names
+      List of enzyme names supposed to be in the sequence
+      
+    forbidden_enzymes
+      List of enzyme names not supposed to be in the sequence. These will
+      appear in red.
+    
+    unique_sites
+      If this is True, then any enzyme site from enzymes_names which appears
+      more than once will be labelled in red
+    
+    valid_color
+      Color for valid sites, by default light blue
+    
+    invalid_color
+      Color for invalid sites, by default light red
+    """
     record = sequence_to_biopython_record(sequence)
     matches = find_patterns_matches(
         sequence.upper(), enzymes_names=enzymes_names)
@@ -108,7 +154,11 @@ def annotate_enzymes_sites(sequence, enzymes_names, forbidden_enzymes=(),
     return record
 
 def write_record(record, target, fmt='genbank'):
-    """Write a record as genbank, fasta, etc. via Biopython, with fixes"""
+    """Write a record as genbank, fasta, etc. via Biopython, with fixes.
+    
+    This will reduce the record's name to 20 characters or less to avoid
+    Biopython throwing an error.
+    """
     record = deepcopy(record)
     record.name = record.name[:20]
     if str(record.seq.alphabet.__class__.__name__) != 'DNAAlphabet':

@@ -7,18 +7,14 @@ from .tools import (enzymes_to_dna_pattern, get_enzymes_ATGC_sequences,
                     find_patterns_matches, reverse_complement)
 
 def sites_difference(site1, site2):
+    """Return minimal sequence of nucleotides that should be added at the end
+    of site1 to make site2 appear.""" 
     for i in range(len(site2), -1, -1):
         if site2[:i] == site1[-i:]:
             return site2[i:]
     return site2
 
-def enzyme_path_to_sequence(path, graph, enzymes_sites):
-    return "".join([enzymes_sites[path[0]]] + [
-        graph[(n1, n2)]['diff']
-        for n1, n2 in zip(path, path[1:])
-    ])
-
-def enzymes_names_to_distances_graph(enzymes_names):
+def _enzymes_names_to_distances_graph(enzymes_names):
     enzymes_names = enzymes_names[:]
     np.random.shuffle(enzymes_names)
     enzymes_sites = get_enzymes_ATGC_sequences(enzymes_names)
@@ -28,8 +24,6 @@ def enzymes_names_to_distances_graph(enzymes_names):
         site1 = enzymes_sites[e1]
         rev_site1 = reverse_complement(site1)
         for e2 in list(enzymes_names):
-            # if e2 in core_enzymes:
-            #     continue
             if e1 == e2:
                 continue
             site2 = enzymes_sites[e2]
@@ -56,18 +50,62 @@ def enzymes_names_to_distances_graph(enzymes_names):
             graph[(e1, e2)] = dict(diff=diff, dist=len(diff))
     return graph, enzymes_sites, core_enzymes
 
+def _enzyme_path_to_sequence(path, graph, enzymes_sites):
+    """Converts a path of successive enzymes into a sequence""" 
+    return "".join([enzymes_sites[path[0]]] + [
+        graph[(n1, n2)]['diff']
+        for n1, n2 in zip(path, path[1:])
+    ])
+
 class NoSuitableSequenceFound(Exception):
     pass
 
 def stacked_sites_array(enzymes_names, forbidden_enzymes=(), unique_sites=True,
                         tries=10, logger='bar', success_condition=None):
+    """Generate a sequence
+
+    Parameters
+    ----------
+
+    enzymes_names
+      Names of enzyme sites which the algorithm should try to include in the
+      sequence.
+    
+    forbidden_enzymes
+      List of enzymes names whose sites should not be in the sequence.
+    
+    unique_sites
+      If True all the enzymes in enzymes_names will have no more than one site
+      in the final sequence.
+    
+    
+    tries
+      Number of tries. the sequence returned is the one with the best score,
+      i.e. with the least enzymes left over, or the shortest sequence in case
+      of equality.
+      
+    success_condition
+      A function evaluated at the end of each try to validate the designed
+      sequence. Should be of the form ``f(seq, inseq, notinseq) => True/False``
+      where ``seq`` is the final sequence, ``inseq`` the set of enzymes in the
+      sequence, and ``notinseq`` the set of enzymes not in the sequence.
+    
+    logger
+      Either "bar" for a progress bar, None for no progress logger, or any
+      Proglog progress logger.
+    
+    Returns
+    -------
+
+    A triplet (sequence, enzymes_in_sequence, enzymes_not_in_sequence)
+    """
 
     enzymes_names = sorted(set(enzymes_names))
     logger = proglog.default_bar_logger(logger, min_time_interval=0.2)
     patterns = enzymes_to_dna_pattern(list(enzymes_names) +
                                       list(forbidden_enzymes))
     graph, enzymes_sites, core_enzymes = \
-        enzymes_names_to_distances_graph(enzymes_names)
+        _enzymes_names_to_distances_graph(enzymes_names)
     def one_try():
         pickable_enzymes_not_in_seq = set(enzymes_names)
         enzymes_not_in_seq = set(enzymes_names)
@@ -85,7 +123,7 @@ def stacked_sites_array(enzymes_names, forbidden_enzymes=(), unique_sites=True,
         
         l = list(pickable_enzymes_not_in_seq)
         path = [l[np.random.randint(len(l))]]
-        seq = enzyme_path_to_sequence(path, graph, enzymes_sites)
+        seq = _enzyme_path_to_sequence(path, graph, enzymes_sites)
         add_enzyme(path[-1])
         while len(pickable_enzymes_not_in_seq):
             nodes_distances = sorted([
@@ -95,12 +133,12 @@ def stacked_sites_array(enzymes_names, forbidden_enzymes=(), unique_sites=True,
             choices = [n for d, n in nodes_distances]
             for new_node in choices:
                 new_path = path + [new_node]
-                new_seq = enzyme_path_to_sequence(
+                new_seq = _enzyme_path_to_sequence(
                     new_path, graph, enzymes_sites)
+                new_diff = len(new_seq) - len(seq)
+                end_seq = new_seq[-(6 + new_diff):]
+                matches = find_patterns_matches(end_seq, patterns)
                 if unique_sites:
-                    new_diff = len(new_seq) - len(seq)
-                    end_seq = new_seq[-(6 + new_diff):]
-                    matches = find_patterns_matches(end_seq, patterns)
                     new_matches = {
                         e: [m for m in matches[e]
                             if m.end > len(end_seq) - new_diff]
@@ -127,7 +165,7 @@ def stacked_sites_array(enzymes_names, forbidden_enzymes=(), unique_sites=True,
     def score(seq, in_seq, leftover):
         if unique_sites or len(forbidden_enzymes):
             matches = find_patterns_matches(seq, patterns)
-            if any([len(matches[e]) != 1 for e in in_seq]):
+            if unique_sites and any([len(matches[e]) != 1 for e in in_seq]):
                 return failure_score
             if any([len(matches[e]) for e in forbidden_enzymes]):
                 return failure_score
