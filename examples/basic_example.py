@@ -12,20 +12,23 @@ enzymes_names = [
     'StyI', 'VspI', 'XhoI', 'XmaI', 'ZraI'
 ]
 
-forbidden_enzymes=['BsmBI', 'BsaI']
+forbidden_enzymes = ['BsmBI', 'BsaI']
 
-seq, sites_in_seq, leftover, success = stacked_sites_array(
-        enzymes_names, forbidden_enzymes=forbidden_enzymes, tries=100)
+sequence, enzymes_in_sequence, enzymes_not_in_sequence = stacked_sites_array(
+    enzymes_names, forbidden_enzymes=forbidden_enzymes, tries=100
+)
 
-print ("Sequence length:", len(seq),
-       "\nRestriction sites:", len(sites_in_seq),
-       "\nSites not included: ", leftover)
+print (
+    "Sequence length:", len(sequence),
+    "\nRestriction sites:", len(enzymes_in_sequence),
+    "\nSites not included: ", enzymes_not_in_sequence
+)
                   
 # PLOT A SUMMARY
-ax = plot_sequence_sites(seq, enzymes_names)
+ax = plot_sequence_sites(sequence, enzymes_names)
 ax.figure.savefig("stacked_array.pdf", bbox_inches='tight')
                   
 # WRITE THE SEQUENCE AND SITE ANNOTATIONS AS A RECORD
 record = annotate_enzymes_sites(
-    seq, enzymes_names, forbidden_enzymes=forbidden_enzymes)
+    sequence, enzymes_names, forbidden_enzymes=forbidden_enzymes)
 write_record(record, 'stacked_site_array.gb')
