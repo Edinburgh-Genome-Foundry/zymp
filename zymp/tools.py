@@ -69,8 +69,7 @@ def sequence_to_biopython_record(sequence, id='<unknown id>',
 def enzymes_to_dna_pattern(enzymes_names):
     """Return a dictionnary {enzyme_name: DnaNotationPattern()}"""
     return {
-        e: DnaNotationPattern(Restriction.__dict__[e].site,
-                              in_both_strands='auto')
+        e: DnaNotationPattern(Restriction.__dict__[e].site)
         for e in enzymes_names
     }
 
