@@ -139,8 +139,12 @@ def stacked_sites_array(
                     for enz in core_enzymes.get(e, []):
                         add_enzyme(enz, as_core=False)
 
-        l = list(pickable_enzymes_not_in_seq)
-        path = [l[np.random.randint(len(l))]]
+        list_pickable_enzymes_not_in_seq = list(pickable_enzymes_not_in_seq)
+        path = [
+            list_pickable_enzymes_not_in_seq[
+                np.random.randint(len(list_pickable_enzymes_not_in_seq))
+            ]
+        ]
         seq = _enzyme_path_to_sequence(path, graph, enzymes_sites)
         add_enzyme(path[-1])
         while len(pickable_enzymes_not_in_seq):
