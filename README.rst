@@ -1,7 +1,7 @@
 .. raw:: html
 
     <p align="center">
-    <img alt="stacked array" title="stacked array" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/zymp/master/docs/_static/images/title.png" width="300">
+    <img alt="Zymp" title="Zymp" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/zymp/master/docs/_static/images/title.png" width="300">
     <br />
     </p>
 
@@ -12,7 +12,7 @@
 .. image:: https://coveralls.io/repos/github/Edinburgh-Genome-Foundry/zymp/badge.svg?branch=master
    :target: https://coveralls.io/github/Edinburgh-Genome-Foundry/zymp?branch=master
 
-Zymp is a Python library to produce small sequences of DNA packed with enzyme
+**Zymp** is a Python library to produce small sequences of DNA packed with enzyme
 restriction sites. You specify the enzymes you want, the ones you don't want,
 whether you want the sites to be unique, or any other condition, and Zymp will
 attempt to find a compact sequence verifying all of this (it really focuses on
@@ -114,30 +114,30 @@ for the result:
 
 
 Installation
--------------
+------------
 
-You can install zymp through PIP
+You can install zymp through PIP:
 
 .. code::
 
     sudo pip install zymp
 
-Alternatively, you can unzip the sources in a folder and type
+Alternatively, you can unzip the sources in a folder and type:
 
 .. code::
 
     sudo python setup.py install
 
 License = MIT
---------------
+-------------
 
 Zymp is an open-source software originally written at the
 `Edinburgh Genome Foundry <http://genomefoundry.org>`_ by
 `Zulko <https://github.com/Zulko>`_ and
 `released on Github <https://github.com/Edinburgh-Genome-Foundry/zymp>`_
-under the MIT licence (¢ Edinburg Genome Foundry).
+under the MIT licence (Copyright 2018 Edinburgh Genome Foundry).
 
-Everyone is welcome to contribute !
+Everyone is welcome to contribute!
 
 More biology software
 ---------------------
