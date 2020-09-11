@@ -1,5 +1,5 @@
 Zymp
-=========
+====
 
 Zymp is a Python library to design "restriction site arrays", which are
 compact sequences with many restriction sites.
@@ -20,7 +20,7 @@ Infos
 
   pip install zymp
 
-**Github Page**
+**Github Page:**
 
 `<https://github.com/Edinburgh-Genome-Foundry/zymp>`_
 
