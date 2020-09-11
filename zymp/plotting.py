@@ -27,7 +27,7 @@ def plot_sequence_sites(
 
     forbidden_enzymes
       The sites of these enzymes will also be plotted, but with a red
-      background
+      background.
 
     unique_sites
       If true, for each enzyme in enzyme_name with more than one site in
@@ -43,7 +43,6 @@ def plot_sequence_sites(
     annotate_inline
       If True, the enzyme names will be written inside the annotations
       when possible, instead of above.
-
     """
 
     record = annotate_enzymes_sites(
@@ -55,13 +54,9 @@ def plot_sequence_sites(
     default_props = dict(
         thickness=10,
         box_color=None,
-        fontdict=dict(
-            family="Impact", size=7, color="black", weight="normal"
-        ),
+        fontdict=dict(family="Impact", size=7, color="black", weight="normal"),
     )
-    translator = BiopythonTranslator(
-        features_properties=lambda f: default_props
-    )
+    translator = BiopythonTranslator(features_properties=lambda f: default_props)
     graphic_record = translator.translate_record(record)
     graphic_record.labels_spacing = 1
     ax, _ = graphic_record.plot(

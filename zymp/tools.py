@@ -47,16 +47,16 @@ def annotate_record(
       The biopython seqrecord to be annotated.
 
     location
-      Either (start, end) or (start, end, strand). (strand defaults to +1)
+      Either (start, end) or (start, end, strand). (strand defaults to +1).
 
     feature_type
-      The type associated with the feature
+      The type associated with the feature.
 
     margin
       Number of extra bases added on each side of the given location.
 
     qualifiers
-      Dictionnary that will be the Biopython feature's `qualifiers` attribute.
+      Dictionary that will be the Biopython feature's `qualifiers` attribute.
     """
     if location == "full":
         location = (margin, len(seqrecord) - margin)
@@ -87,7 +87,7 @@ def sequence_to_biopython_record(
 
 
 def enzymes_to_dna_pattern(enzymes_names):
-    """Return a dictionnary {enzyme_name: DnaNotationPattern()}"""
+    """Return a dictionary {enzyme_name: DnaNotationPattern()}"""
     return {e: DnaNotationPattern(Restriction.__dict__[e].site) for e in enzymes_names}
 
 
@@ -102,7 +102,7 @@ def get_enzymes_ATGC_sequences(enzymes_names):
 
 
 def find_patterns_matches(seq, patterns=None, enzymes_names=None):
-    """Return a dictionnary {pattern_name: [sites matches locations]}
+    """Return a dictionary {pattern_name: [sites matches locations]}.
 
     Parameters
     ----------
@@ -115,7 +115,7 @@ def find_patterns_matches(seq, patterns=None, enzymes_names=None):
       A list of enzyme names can be provided instead.
 
     enzymes_names
-      A list of enzymes names whose sites will be matched in the sequence.
+      A list of enzyme names whose sites will be matched in the sequence.
     """
     if enzymes_names is not None:
         patterns = enzymes_to_dna_pattern(enzymes_names)
@@ -136,10 +136,10 @@ def annotate_enzymes_sites(
     ----------
 
     sequence
-      An ATGC sequence
+      An ATGC sequence.
 
     enzymes_names
-      List of enzyme names supposed to be in the sequence
+      List of enzyme names supposed to be in the sequence.
 
     forbidden_enzymes
       List of enzyme names not supposed to be in the sequence. These will
@@ -147,13 +147,13 @@ def annotate_enzymes_sites(
 
     unique_sites
       If this is True, then any enzyme site from enzymes_names which appears
-      more than once will be labelled in red
+      more than once will be labelled in red.
 
     valid_color
-      Color for valid sites, by default light blue
+      Color for valid sites, by default light blue.
 
     invalid_color
-      Color for invalid sites, by default light red
+      Color for invalid sites, by default light red.
     """
     record = sequence_to_biopython_record(sequence)
     matches = find_patterns_matches(sequence.upper(), enzymes_names=enzymes_names)
