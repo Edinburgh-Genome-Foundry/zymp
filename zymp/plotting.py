@@ -54,7 +54,7 @@ def plot_sequence_sites(
     default_props = dict(
         thickness=10,
         box_color=None,
-        fontdict=dict(family="Impact", size=7, color="black", weight="normal"),
+        fontdict=dict(family="Impact", fontsize=7, color="black", weight="normal"),
     )
     translator = BiopythonTranslator(features_properties=lambda f: default_props)
     graphic_record = translator.translate_record(record)
