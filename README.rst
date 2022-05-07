@@ -5,9 +5,10 @@
     <br />
     </p>
 
-.. image:: https://travis-ci.org/Edinburgh-Genome-Foundry/zymp.svg?branch=master
-   :target: https://travis-ci.org/Edinburgh-Genome-Foundry/zymp
-   :alt: Travis CI build status
+
+.. image:: https://github.com/Edinburgh-Genome-Foundry/zymp/actions/workflows/build.yml/badge.svg
+    :target: https://github.com/Edinburgh-Genome-Foundry/zymp/actions/workflows/build.yml
+    :alt: GitHub CI build status
 
 .. image:: https://coveralls.io/repos/github/Edinburgh-Genome-Foundry/zymp/badge.svg?branch=master
    :target: https://coveralls.io/github/Edinburgh-Genome-Foundry/zymp?branch=master
@@ -120,13 +121,13 @@ You can install zymp through PIP:
 
 .. code::
 
-    sudo pip install zymp
+    pip install zymp
 
 Alternatively, you can unzip the sources in a folder and type:
 
 .. code::
 
-    sudo python setup.py install
+    python setup.py install
 
 License = MIT
 -------------
