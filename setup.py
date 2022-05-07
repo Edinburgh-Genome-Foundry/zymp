@@ -21,7 +21,6 @@ setup(
         "dnachisel",
         "dna_features_viewer",
         "biopython",
-        "dnacauldron",
         "proglog",
     ],
 )
