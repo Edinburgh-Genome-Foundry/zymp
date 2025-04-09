@@ -13,7 +13,8 @@
 .. image:: https://coveralls.io/repos/github/Edinburgh-Genome-Foundry/zymp/badge.svg?branch=master
    :target: https://coveralls.io/github/Edinburgh-Genome-Foundry/zymp?branch=master
 
-**Zymp** is a Python library to produce small sequences of DNA packed with enzyme
+**Zymp** is a Python library (`API reference <https://edinburgh-genome-foundry.github.io/zymp>`_)
+to produce small sequences of DNA packed with enzyme
 restriction sites. You specify the enzymes you want, the ones you don't want,
 whether you want the sites to be unique, or any other condition, and Zymp will
 attempt to find a compact sequence verifying all of this (it really focuses on
