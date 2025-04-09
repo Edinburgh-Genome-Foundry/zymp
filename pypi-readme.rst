@@ -20,11 +20,12 @@ Infos
 
   pip install zymp
 
-**Github Page:**
+**Github page:** `<https://github.com/Edinburgh-Genome-Foundry/zymp>`_
 
-`<https://github.com/Edinburgh-Genome-Foundry/zymp>`_
+**License:** MIT
 
-**License:** MIT, Copyright Edinburgh Genome Foundry
+Copyright 2018 Edinburgh Genome Foundry, University of Edinburgh
+
 
 More biology software
 ---------------------
