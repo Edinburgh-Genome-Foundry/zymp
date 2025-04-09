@@ -1,0 +1,28 @@
+[project]
+name = "zymp"
+version = "0.1.3"
+license = "MIT"
+authors = [{ name = "Zulko" }]
+description = "Design compact sequences with many enzyme restriction sites."
+readme = "pypi-readme.rst"
+keywords = ["DNA", "sequence", "design", "restriction", "site", "array"]
+dependencies = [
+  "numpy",
+  "dnachisel",
+  "dna_features_viewer",
+  "biopython",
+  "proglog",
+]
+
+[project.urls]
+Homepage = "https://github.com/Edinburgh-Genome-Foundry/zymp"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = ["docs"]
