@@ -1,20 +1,15 @@
-.. _reference:
+API reference
+=============
 
-Zymp - Reference manual
-============================
+.. autofunction:: zymp.stacked_sites_array
 
-Kappa Models
-~~~~~~~~~~~~~~
+.. autofunction:: zymp.annotate_enzymes_sites
 
-.. autoclass:: zymp.KappaModel.KappaModel
-.. autoclass:: zymp.KappaClasses.KappaAgent
-.. autoclass:: zymp.KappaClasses.KappaSiteState
-.. autoclass:: zymp.KappaClasses.KappaRule
-.. autoclass:: zymp.FormattedKappaError.FormattedKappaError
+.. autofunction:: zymp.write_record
 
+.. autofunction:: zymp.plot_sequence_sites
 
-Result analysis
-~~~~~~~~~~~~~~~
-
-.. autofunction:: zymp.agents_graphs.plot_snapshot_agents
-.. autofunction:: zymp.plot_simulation_time_series.plot_simulation_time_series
+.. .. automodule:: zymp
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:

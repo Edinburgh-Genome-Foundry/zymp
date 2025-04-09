@@ -61,7 +61,7 @@ def _enzymes_names_to_distances_graph(enzymes_names):
 
 
 def _enzyme_path_to_sequence(path, graph, enzymes_sites):
-    """Converts a path of successive enzymes into a sequence."""
+    """Convert a path of successive enzymes into a sequence."""
     return "".join(
         [enzymes_sites[path[0]]]
         + [graph[(n1, n2)]["diff"] for n1, n2 in zip(path, path[1:])]
@@ -84,37 +84,36 @@ def stacked_sites_array(
 
     Parameters
     ----------
+    enzymes_names: list
+        Names of enzyme sites which the algorithm should try to include in the
+        sequence.
 
-    enzymes_names
-      Names of enzyme sites which the algorithm should try to include in the
-      sequence.
+    forbidden_enzymes: list
+        List of enzymes names whose sites should not be in the sequence.
 
-    forbidden_enzymes
-      List of enzymes names whose sites should not be in the sequence.
+    unique_sites: bool
+        If True, all the enzymes in enzymes_names will have no more than one site
+        in the final sequence.
 
-    unique_sites
-      If True all the enzymes in enzymes_names will have no more than one site
-      in the final sequence.
+    tries: int
+        Number of tries. The sequence returned is the one with the best score,
+        i.e., with the least enzymes left over, or the shortest sequence
+        in case of equality.
 
-    tries
-      Number of tries. the sequence returned is the one with the best score,
-      i.e. with the least enzymes left over, or the shortest sequence in case
-      of equality.
+    success_condition: function
+        A function evaluated at the end of each try to validate the designed sequence.
+        Should be of the form ``f(seq, inseq, notinseq) => True/False`` where ``seq``
+        is the final sequence, ``inseq`` the set of enzymes in the sequence,
+        and ``notinseq`` the set of enzymes not in the sequence.
 
-    success_condition
-      A function evaluated at the end of each try to validate the designed
-      sequence. Should be of the form ``f(seq, inseq, notinseq) => True/False``
-      where ``seq`` is the final sequence, ``inseq`` the set of enzymes in the
-      sequence, and ``notinseq`` the set of enzymes not in the sequence.
-
-    logger
-      Either "bar" for a progress bar, None for no progress logger, or any
-      Proglog progress logger.
+    logger: {'bar', None} or Proglog progress logger, optional
+        Either "bar" for a progress bar, None for no progress logger,
+        or any Proglog progress logger.
 
     Returns
     -------
-
-    A triplet (sequence, enzymes_in_sequence, enzymes_not_in_sequence).
+    tuple
+        A triplet (sequence, enzymes_in_sequence, enzymes_not_in_sequence).
     """
 
     enzymes_names = sorted(set(enzymes_names))

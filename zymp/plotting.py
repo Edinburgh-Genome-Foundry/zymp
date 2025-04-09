@@ -18,31 +18,29 @@ def plot_sequence_sites(
 
     Parameters
     ----------
+    sequence: str
+        The sequence of interest. ATGC string.
 
-    sequence
-      The sequence of interest. ATGC string.
+    enzymes_names: list
+        List of names of the enzymes to plot.
 
-    enzymes_names
-      List of names of the enzymes to plot.
+    forbidden_enzymes: list
+        The sites of these enzymes will also be plotted, but with a red background.
 
-    forbidden_enzymes
-      The sites of these enzymes will also be plotted, but with a red
-      background.
+    unique_sites: bool
+        If true, for each enzyme in enzyme_name with more than one site in the
+        sequence, these will be plotted on a red background.
 
-    unique_sites
-      If true, for each enzyme in enzyme_name with more than one site in
-      the sequence, these will be plotted on a red background.
+    ax: matplotlib.axes.Axes, optional
+        Matplotlib ax on which to draw the figure. If none is provided a new figure
+        is created and the ax is returned at the end.
 
-    ax
-      Matplotlib ax on which to draw the figure. If none is provided a new
-      figure is created and the ax is returned at the end.
+    figure_width: float, optional
+        Width of the figure if no ax is provided and a new figure is returned.
 
-    figure_width
-      Width of the figure if no ax is provided and a new figure is returned.
-
-    annotate_inline
-      If True, the enzyme names will be written inside the annotations
-      when possible, instead of above.
+    annotate_inline: bool, optional
+        If True, the enzyme names will be written inside the annotations when possible,
+        instead of above.
     """
 
     record = annotate_enzymes_sites(

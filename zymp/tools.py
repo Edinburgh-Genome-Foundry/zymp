@@ -20,17 +20,17 @@ def complement(dna_sequence):
 
     For instance ``complement("ATGCCG")`` returns ``"TACGGC"``.
 
-    Uses BioPython for speed.
+    Uses Biopython for speed.
     """
     return str(Seq(dna_sequence).complement())
 
 
 def reverse_complement(sequence):
-    """Return the reverse-complement of the DNA sequence.
+    """Return the reverse complement of the DNA sequence.
 
     For instance ``complement("ATGCCG")`` returns ``"GCCGTA"``.
 
-    Uses BioPython for speed.
+    Uses Biopython for speed.
     """
     return complement(sequence)[::-1]
 
@@ -42,21 +42,20 @@ def annotate_record(
 
     Parameters
     ----------
+    seqrecord : SeqRecord
+        The Biopython SeqRecord to be annotated.
 
-    seqrecord
-      The biopython seqrecord to be annotated.
+    location : tuple
+        Either (start, end) or (start, end, strand). Strand defaults to +1.
 
-    location
-      Either (start, end) or (start, end, strand). (strand defaults to +1).
+    feature_type : str
+        The type associated with the feature.
 
-    feature_type
-      The type associated with the feature.
+    margin : int
+        Number of extra bases added on each side of the given location.
 
-    margin
-      Number of extra bases added on each side of the given location.
-
-    qualifiers
-      Dictionary that will be the Biopython feature's `qualifiers` attribute.
+    qualifiers : dict
+        Dictionary that will be the SeqRecord feature's `qualifiers` attribute.
     """
     if location == "full":
         location = (margin, len(seqrecord) - margin)
@@ -106,16 +105,15 @@ def find_patterns_matches(seq, patterns=None, enzymes_names=None):
 
     Parameters
     ----------
+    seq : str
+        An ATGC string.
 
-    seq
-      An ATGC string.
+    patterns : dict, optional
+        A dict of the form {pattern_name: dnachisel.DnaNotationPattern()}.
+        A list of enzyme names can be provided instead.
 
-    patterns
-      A dict of the form {pattern_name: dnachisel.DnaNotationPattern()}.
-      A list of enzyme names can be provided instead.
-
-    enzymes_names
-      A list of enzyme names whose sites will be matched in the sequence.
+    enzymes_names : list, optional
+        A list of enzyme names whose sites will be matched in the sequence.
     """
     if enzymes_names is not None:
         patterns = enzymes_to_dna_pattern(enzymes_names)
@@ -134,26 +132,25 @@ def annotate_enzymes_sites(
 
     Parameters
     ----------
+    sequence : str
+        An ATGC sequence.
 
-    sequence
-      An ATGC sequence.
+    enzymes_names : list
+        List of enzyme names supposed to be in the sequence.
 
-    enzymes_names
-      List of enzyme names supposed to be in the sequence.
+    forbidden_enzymes : list
+        List of enzyme names not supposed to be in the sequence. These will
+        appear in red.
 
-    forbidden_enzymes
-      List of enzyme names not supposed to be in the sequence. These will
-      appear in red.
+    unique_sites : bool
+        If this is True, then any enzyme site from enzymes_names which appears
+        more than once will be labelled in red.
 
-    unique_sites
-      If this is True, then any enzyme site from enzymes_names which appears
-      more than once will be labelled in red.
+    valid_color : str, optional
+        Color for valid sites, by default light blue.
 
-    valid_color
-      Color for valid sites, by default light blue.
-
-    invalid_color
-      Color for invalid sites, by default light red.
+    invalid_color : str, optional
+        Color for invalid sites, by default light red.
     """
     record = sequence_to_biopython_record(sequence)
     matches = find_patterns_matches(sequence.upper(), enzymes_names=enzymes_names)
@@ -173,7 +170,7 @@ def annotate_enzymes_sites(
 
 
 def write_record(record, target, fmt="genbank"):
-    """Write a record as genbank, fasta, etc. via Biopython, with fixes.
+    """Write a record as Genbank, FASTA, etc. via Biopython, with fixes.
 
     This will reduce the record's name to 20 characters or less to avoid
     Biopython throwing an error.
